@@ -8,15 +8,13 @@
 
 namespace rawsockets
 {
-
 	class Client
 	{
 	public:
-		Client();		
+		Client();
 		~Client();
-		// port, msg, host
-		void Cl(int, string);
-		void Cl(int, string, string);
+		// port, msg, host (optional)
+		void Cl(int, string,string);
 	};
 }
 

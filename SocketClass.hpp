@@ -11,6 +11,8 @@
 #include <fcntl.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
+// local includes
+#include "Defines.hpp"
 
 using std::string;
 
@@ -31,7 +33,7 @@ namespace rawsockets
 		// Client part
 		bool Connect(const string host, const int port);
 		bool SendMesg(string);
-		void Set_Non_Blocking(const bool);
+		void SetNonBlocking(const bool);
 
 	private:
 		int m_sock;

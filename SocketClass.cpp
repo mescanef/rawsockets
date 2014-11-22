@@ -1,11 +1,8 @@
 // local includes
 #include "SocketClass.hpp"
 
-#define MAXCONNS 5
-
 namespace rawsockets
 {
-
 	SocketClass::SocketClass() : m_sock(-1)
 	{
 		memset(&m_addr, 0, sizeof (m_addr));
@@ -61,7 +58,7 @@ namespace rawsockets
 		}
 	}
 
-	void SocketClass::Set_Non_Blocking(const bool var)
+	void SocketClass::SetNonBlocking(const bool var)
 	{
 		int opts;
 
@@ -105,5 +102,4 @@ namespace rawsockets
 		}
 		return true;
 	}
-
 }
