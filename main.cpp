@@ -10,7 +10,8 @@ using GetOpt::GetOpt_pp;
 using GetOpt::Option;
 using rawsockets::Client;
 
-namespace gvars
+// "private" vars
+namespace pvars
 {
 	int MODE=DEFMODE;
 	int PORT=DEFPORT;
@@ -23,19 +24,19 @@ int main(int argc, char **argv)
 	GetOpt_pp ops(argc, argv);
 
 	// get port value if specified in args..
-	ops >> Option('p',gvars::PORT);
+	ops >> Option('p',pvars::PORT);
 
-	if (ops >> Option('s', gvars::MODE)) {
+	if (ops >> Option('s', pvars::MODE)) {
 		// run as server
 		// ......
 	} else {
 		cout << "Running as a client.\n";
 		// run as client by default
 		// check if user provided a message
-		if(ops >> Option('m', gvars::MESG)) {
+		if(ops >> Option('m', pvars::MESG)) {
 			Client c;
-			ops >> Option('h', gvars::HOST); // if user not specified the hostname, then use variables' default
-			c.Cl(gvars::PORT,gvars::MESG,gvars::HOST);
+			ops >> Option('h', pvars::HOST); // if user not specified the hostname, then use variables' default
+			c.Cl(pvars::PORT,pvars::MESG,pvars::HOST);
 		} else {
 			cout << "Sorry. No message specified. Exiting.\n";
 		}
