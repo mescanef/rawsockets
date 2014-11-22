@@ -4,12 +4,6 @@
 #include "Defines.hpp"
 #include "getoptpp/getopt_pp_standalone.h"
 
-using std::endl;
-using std::cout;
-using GetOpt::GetOpt_pp;
-using GetOpt::Option;
-using rawsockets::Client;
-
 // "private" vars
 namespace pvars
 {
@@ -19,27 +13,34 @@ namespace pvars
 	string MESG=DEFMESG;
 }
 
+using std::endl;
+using std::cout;
+using GetOpt::GetOpt_pp;
+using GetOpt::Option;
+using rawsockets::Client;
+using pvars::MODE;
+using pvars::PORT;
+using pvars::HOST;
+using pvars::MESG;
+
 int main(int argc, char **argv)
 {
 	GetOpt_pp ops(argc, argv);
 
 	// get port value if specified in args..
-	ops >> Option('p',pvars::PORT);
+	ops >> Option('p',PORT);
 
-	if (ops >> Option('s', pvars::MODE)) {
+	if (ops >> Option('s', MODE)) {
 		// run as server
 		// ......
 	} else {
 		cout << "Running as a client.\n";
 		// run as client by default
-		// check if user provided a message
-		if(ops >> Option('m', pvars::MESG)) {
-			Client c;
-			ops >> Option('h', pvars::HOST); // if user not specified the hostname, then use variables' default
-			c.Cl(pvars::PORT,pvars::MESG,pvars::HOST);
-		} else {
-			cout << "Sorry. No message specified. Exiting.\n";
-		}
+		// check if user provided a message - if not, then use variables' default		
+		ops >> Option('m', MESG);
+		ops >> Option('h', HOST); // if user not specified hostname, then use variables' default
+		Client c;
+		c.Cl(PORT,MESG,HOST);
 	}
 	return 0;
 }
