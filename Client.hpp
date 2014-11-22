@@ -13,7 +13,7 @@ namespace rawsockets
 	public:
 		Client();
 		~Client();
-		// port, msg, host (optional)
+		// port, msg, host 
 		void Cl(int, string,string);
 	};
 }

@@ -22,7 +22,7 @@ namespace rawsockets
 	public:
 		ClientSocket();
 		~ClientSocket();
-		// port, hostname (optional)
+		// port, hostname 
 		bool CSocket(int, string);
 		void Logger(string);
 		void SendMesg(string);

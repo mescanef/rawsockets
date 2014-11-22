@@ -39,7 +39,6 @@ int main(int argc, char **argv)
 		} else {
 			cout << "Sorry. No message specified. Exiting.\n";
 		}
-
 	}
 	return 0;
 }
