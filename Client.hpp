@@ -1,8 +1,6 @@
 #ifndef CLIENT_HPP
 #define CLIENT_HPP
 
-// global includes
-#include <iostream>
 // local includes
 #include "ClientSocket.hpp"
 

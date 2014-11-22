@@ -1,3 +1,5 @@
 Debug/
 rawsockets.project
 rawsockets.txt
+rawsockets.mk
+Makefile

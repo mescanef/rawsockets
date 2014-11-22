@@ -13,8 +13,6 @@ namespace pvars
 	string MESG=DEFMESG;
 }
 
-using std::endl;
-using std::cout;
 using GetOpt::GetOpt_pp;
 using GetOpt::Option;
 using rawsockets::Client;

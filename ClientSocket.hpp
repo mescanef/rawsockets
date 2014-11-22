@@ -3,7 +3,6 @@
 
 // global includes
 #include <string>
-#include <fstream>
 #include <iostream>
 // local includes
 #include "SocketClass.hpp"

@@ -13,7 +13,7 @@ CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=mescanef
-Date                   :=11/21/14
+Date                   :=11/22/14
 CodeLitePath           :="/home/mescanef/.codelite"
 LinkerName             :=/usr/bin/g++ 
 SharedObjectLinkerName :=/usr/bin/g++ -shared -fPIC
@@ -60,7 +60,7 @@ AS       := /usr/bin/as
 ## User defined environment variables
 ##
 CodeLiteDir:=/usr/share/codelite
-Objects0=$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/Client.cpp$(ObjectSuffix) $(IntermediateDirectory)/ClientSocket.cpp$(ObjectSuffix) $(IntermediateDirectory)/SocketClass.cpp$(ObjectSuffix) 
+Objects0=$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/Client.cpp$(ObjectSuffix) $(IntermediateDirectory)/ClientSocket.cpp$(ObjectSuffix) $(IntermediateDirectory)/SocketClass.cpp$(ObjectSuffix) $(IntermediateDirectory)/getoptpp_getopt_pp.cpp$(ObjectSuffix) 
 
 
 
@@ -118,6 +118,14 @@ $(IntermediateDirectory)/SocketClass.cpp$(DependSuffix): SocketClass.cpp
 
 $(IntermediateDirectory)/SocketClass.cpp$(PreprocessSuffix): SocketClass.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/SocketClass.cpp$(PreprocessSuffix) "SocketClass.cpp"
+
+$(IntermediateDirectory)/getoptpp_getopt_pp.cpp$(ObjectSuffix): getoptpp/getopt_pp.cpp $(IntermediateDirectory)/getoptpp_getopt_pp.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/mescanef/guestAgentProject/rawsockets/getoptpp/getopt_pp.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/getoptpp_getopt_pp.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/getoptpp_getopt_pp.cpp$(DependSuffix): getoptpp/getopt_pp.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/getoptpp_getopt_pp.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/getoptpp_getopt_pp.cpp$(DependSuffix) -MM "getoptpp/getopt_pp.cpp"
+
+$(IntermediateDirectory)/getoptpp_getopt_pp.cpp$(PreprocessSuffix): getoptpp/getopt_pp.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/getoptpp_getopt_pp.cpp$(PreprocessSuffix) "getoptpp/getopt_pp.cpp"
 
 
 -include $(IntermediateDirectory)/*$(DependSuffix)
