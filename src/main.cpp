@@ -1,5 +1,5 @@
 #include <stdio.h>
-//#include "Server.hpp"
+#include "Server.hpp"
 #include "Client.hpp"
 #include "Defines.hpp"
 #include "getoptpp/getopt_pp_standalone.h"
@@ -16,6 +16,7 @@ namespace pvars
 using GetOpt::GetOpt_pp;
 using GetOpt::Option;
 using rawsockets::Client;
+using rawsockets::Server;
 using pvars::MODE;
 using pvars::PORT;
 using pvars::HOST;
@@ -30,7 +31,8 @@ int main(int argc, char **argv)
 
 	if (ops >> Option('s', MODE)) {
 		// run as server
-		// ......
+		Server s;
+		s.RunServer(PORT);
 	} else {
 		cout << "Running as a client.\n";
 		// run as client by default

@@ -19,6 +19,7 @@ namespace rawsockets
 	class ClientSocket : private SocketClass
 	{
 	public:
+		// Todo - mv csocket's into def constr.
 		ClientSocket();
 		~ClientSocket();
 		// port, hostname 

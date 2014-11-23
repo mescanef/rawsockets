@@ -3,6 +3,7 @@
 
 namespace rawsockets
 {
+	// Todo - mv cl's into def constr.
 	Client::Client()
 	{
 	}

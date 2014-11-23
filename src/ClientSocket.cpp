@@ -3,10 +3,11 @@
 
 namespace rawsockets
 {
-	ClientSocket::~ClientSocket()
+	ClientSocket::ClientSocket()
 	{
 	}
-	ClientSocket::ClientSocket()
+		
+	ClientSocket::~ClientSocket()
 	{
 	}
 
