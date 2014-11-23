@@ -17,14 +17,15 @@ SRCObjects=$(SRC)/main$(SRCObjectSuffix) $(SRC)/Client$(SRCObjectSuffix) $(SRC)/
 ##
 all: $(Objects) 
 
-
 $(OutputDir)/%$(ObjectSuffix): $(SRC)/%$(SRCObjectSuffix) | $(OutputDir)
 	$(CXX) -c -o $@ $< $(CXXFLAGS)
 
 $(OutputDir):
 	test -d ./$(OutputDir) || $(MakeDirCommand) $(OutputDir)
 
-# $(SRCObjects) -o $(OutputDir)/$(NAME)
+all: $(Objects) 
+	$(CXX) -o $(OutputDir)/$(NAME) $(Objects) 
+	$(RM) $(OutputDir)/*$(ObjectSuffix)
 
 ##
 ## Clean
