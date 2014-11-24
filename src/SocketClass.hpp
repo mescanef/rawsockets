@@ -29,6 +29,7 @@ namespace rawsockets
 		bool Bind(const int port);
 		bool Listen() const;
 		bool Accept(SocketClass&) const;
+		bool RecvMesg(string&);
 
 		// Client part
 		bool Connect(const string host, const int port);

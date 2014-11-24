@@ -53,9 +53,8 @@ namespace rawsockets
 
 		if (new_socket.m_sock <= 0) {
 			return false;
-		} else {
-			return true;
 		}
+		return true;
 	}
 
 	void SocketClass::SetNonBlocking(const bool var)
@@ -94,6 +93,7 @@ namespace rawsockets
 		}
 	}
 
+	// TODO: send msg length to the server first
 	bool SocketClass::SendMesg(string s)
 	{
 		int status = send(m_sock, s.c_str(), s.size(), MSG_NOSIGNAL);
@@ -101,5 +101,25 @@ namespace rawsockets
 			return false;
 		}
 		return true;
+	}
+	
+	// TODO: recieve msg length from the client first
+	bool SocketClass::RecvMesg(string& msg)
+	{
+		char buf [MAXRECV];
+		memset(buf, 0, MAXRECV);
+
+		while (1) {
+			int status = recv(m_sock, buf, sizeof(buf), MSG_NOSIGNAL);
+			if(status <= 0) {
+				break;
+			} else {
+				msg += buf;
+			}
+		}
+		if (msg.size()>0) {
+			return true;
+		}
+		return false;
 	}
 }

@@ -16,32 +16,57 @@
 #endif
 
 #ifndef ERRSOCKCREATE
-#define ERRSOCKCREATE "Sorry, Could not create client socket."
+#define ERRSOCKCREATE "Sorry, Could not create socket."
 #endif
 
 #ifndef ERRSOCKCONNECT
-#define ERRSOCKCONNECT "Sorry. Unable to connect!"
+#define ERRSOCKCONNECT "Client: Sorry. Unable to connect!"
 #endif
 
 #ifndef RRSOCKSENDMSG
-#define ERRSOCKSENDMSG "Sorry. Could not send message!"
+#define ERRSOCKSENDMSG "Client: Sorry. Could not send message!"
 #endif
 
 #ifndef SUCCSOCKCONNMSG
-#define SUCCSOCKCONNMSG "Connected!"
+#define SUCCSOCKCONNMSG "Client: Connected!"
+#endif
+
+#ifndef  ERRSOCKRECVMSG
+#define  ERRSOCKRECVMSG "Server: Sorry, could not recieve message!"
 #endif
 
 #ifndef SUCCSOCKACCEPT 
-#define  SUCCSOCKACCEPT "Socket accepted."
+#define SUCCSOCKACCEPT "Server: Socket accepted."
+#endif
+
+#ifndef ERRSOCKACCEPT 
+#define ERRSOCKACCEPT "Server: Sorry, socket not accepted."
+#endif
+
+#ifndef ERRSOCKLISTEN
+#define ERRSOCKLISTEN "Server: Could not listen to socket."
 #endif
 
 #ifndef DAEMONSTOPPED
-#define DAEMONSTOPPED "Daemon stopped."
+#define DAEMONSTOPPED "Server: Daemon stopped."
+#endif
+
+#ifndef DAEMONSTARTED
+#define DAEMONSTARTED "Server: Daemon started."
+#endif
+
+#ifndef ERRSOCKBIND
+#define ERRSOCKBIND "Server: Could not bind to port."
 #endif
 
 #ifndef MAXCONNS
 #define MAXCONNS 5
 #endif
+
+#ifndef MAXRECV
+#define MAXRECV 255
+#endif
+
 #ifndef LOGFILENAME
-#define LOGFILENAME "client.log"
+#define LOGFILENAME "rawsockets.log"
 #endif

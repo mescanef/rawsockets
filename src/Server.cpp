@@ -20,7 +20,8 @@ namespace rawsockets
 			rawsockets::ServerSocket new_sock;
 			if(sock.Accept(new_sock)) {
 				sock.Logger(SUCCSOCKACCEPT);
-				// recieve data
+				// recieve message
+				new_sock.RecvMesg();				
 			}
 			new_sock.~ServerSocket();
 		}

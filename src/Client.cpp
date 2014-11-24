@@ -18,5 +18,4 @@ namespace rawsockets
 			ClientSock.SendMesg(msg);
 		}
 	}
-
 }

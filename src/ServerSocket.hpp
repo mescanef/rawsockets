@@ -23,7 +23,8 @@ namespace rawsockets
 		~ServerSocket();
 		void Daemonize(int);
 		bool Accept(ServerSocket&);
-		void Logger(string);		
+		void Logger(string);
+		void RecvMesg();
 	};
 }
 
