@@ -29,18 +29,17 @@ namespace rawsockets
 		bool Bind(const int port);
 		bool Listen() const;
 		bool Accept(SocketClass&) const;
-		bool RecvMesg(string&);
+		bool RecvMesg(string&) const;
 
 		// Client part
 		bool Connect(const string host, const int port);
-		bool SendMesg(string);
+		bool SendMesg(const string);
 		void SetNonBlocking(const bool);
 
 	private:
 		int m_sock;
 		sockaddr_in m_addr;
 	};
-
 }
 
 #endif // SocketClass_HPP

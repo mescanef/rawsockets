@@ -14,7 +14,7 @@ namespace rawsockets
 	{
 	}
 
-	void ServerSocket::Daemonize(int port)
+	void ServerSocket::Daemonize(const int port)
 	{
 		if (!SocketClass::Create()) {
 			Logger(ERRSOCKCREATE);
@@ -48,12 +48,12 @@ namespace rawsockets
 		}
 		else
 		{
-			Logger("Server: Recieved from client: " + msg);
-			cout << "Server: Recieved from client: " << msg << endl;
+			Logger("Server: Received from client: " + msg);
+			cout << "Server: Received from client: " << msg << endl;
 		}
 	}
 
-	void ServerSocket::Logger(string text)
+	void ServerSocket::Logger(const string text)
 	{
 		ofstream log_file(LOGFILENAME, ios_base::out | ios_base::app);
 		log_file << text << endl;

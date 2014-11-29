@@ -21,9 +21,9 @@ namespace rawsockets
 	public:
 		ServerSocket();		
 		~ServerSocket();
-		void Daemonize(int);
-		bool Accept(ServerSocket&);
-		void Logger(string);
+		void Daemonize(const int);
+		bool Accept(ServerSocket&) const;
+		void Logger(const string);
 		void RecvMesg();
 	};
 }

@@ -7,5 +7,5 @@ TODO
 ==========
 
 - Send message's length to the server first.
-- Use data serialization when sending/recieving.
+- Use data serialization when sending/receiving.
 

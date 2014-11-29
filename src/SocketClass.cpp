@@ -94,7 +94,7 @@ namespace rawsockets
 	}
 
 	// TODO: send msg length to the server first
-	bool SocketClass::SendMesg(string s)
+	bool SocketClass::SendMesg(const string s)
 	{
 		int status = send(m_sock, s.c_str(), s.size(), MSG_NOSIGNAL);
 		if (status == -1) {
@@ -103,8 +103,8 @@ namespace rawsockets
 		return true;
 	}
 	
-	// TODO: recieve msg length from the client first
-	bool SocketClass::RecvMesg(string& msg)
+	// TODO: receive msg length from the client first
+	bool SocketClass::RecvMesg(string& msg) const
 	{
 		char buf [MAXRECV];
 		memset(buf, 0, MAXRECV);

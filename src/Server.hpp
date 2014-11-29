@@ -13,7 +13,7 @@ namespace rawsockets
 	public:
 		Server();
 		~Server();
-		void RunServer(int);
+		void RunServer(const int);
 	};
 }
 

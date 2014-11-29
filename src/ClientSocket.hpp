@@ -23,9 +23,9 @@ namespace rawsockets
 		ClientSocket();
 		~ClientSocket();
 		// port, hostname 
-		bool CSocket(int, string);
-		void Logger(string);
-		void SendMesg(string);
+		bool Socket(const int, const string);
+		void Logger(const string);
+		void SendMesg(const string);
 	};
 }
 

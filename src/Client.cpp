@@ -3,19 +3,19 @@
 
 namespace rawsockets
 {
-	// Todo - mv cl's into def constr.
 	Client::Client()
-	{
+	{				
 	}
 	Client::~Client()
 	{
 	}
 
-	void Client::Cl(int port, string msg, string hostname)
+	void Client::SendMesg(const int port, const string msg, const string hostname)
 	{
-		ClientSocket ClientSock;
-		if(ClientSock.CSocket(port, hostname)) {
-			ClientSock.SendMesg(msg);
+		ClientSocket Client;
+		if(Client.Socket(port, hostname)) {
+			Client.SendMesg(msg);
 		}
 	}
+	 
 }

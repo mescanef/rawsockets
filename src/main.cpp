@@ -40,7 +40,7 @@ int main(int argc, char **argv)
 		ops >> Option('m', MESG);
 		ops >> Option('h', HOST); // if user not specified hostname, then use variables' default
 		Client c;
-		c.Cl(PORT,MESG,HOST);
+		c.SendMesg(PORT,MESG,HOST);
 	}
 	return 0;
 }

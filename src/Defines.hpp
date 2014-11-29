@@ -16,7 +16,7 @@
 #endif
 
 #ifndef ERRSOCKCREATE
-#define ERRSOCKCREATE "Sorry, Could not create socket."
+#define ERRSOCKCREATE "Server: Sorry, Could not create socket."
 #endif
 
 #ifndef ERRSOCKCONNECT
@@ -32,7 +32,7 @@
 #endif
 
 #ifndef  ERRSOCKRECVMSG
-#define  ERRSOCKRECVMSG "Server: Sorry, could not recieve message!"
+#define  ERRSOCKRECVMSG "Server: Sorry, could not receive message!"
 #endif
 
 #ifndef SUCCSOCKACCEPT 
