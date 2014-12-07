@@ -32,9 +32,9 @@ namespace rawsockets
 		bool RecvMesg(string&) const;
 
 		// Client part
-		bool Connect(const string host, const int port);
-		bool SendMesg(const string);
-		void SetNonBlocking(const bool);
+		bool Connect(const string& host, const int port);
+		bool SendMesg(const string&) const;
+		void SetNonBlocking(const bool) const;
 
 	private:
 		int m_sock;

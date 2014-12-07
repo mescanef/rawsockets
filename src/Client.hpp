@@ -3,16 +3,19 @@
 
 // local includes
 #include "ClientSocket.hpp"
+#include "Logger.hpp"
 
 namespace rawsockets
 {
 	class Client
 	{
 	public:
-		Client();
+		Client(Logger&);
 		~Client();
-		// port, msg, host 
-		void SendMesg(const int, const string, const string);
+		// port, msg, host
+		void SendMesg(const int, const string&, const string&) const;
+	private:
+		Logger& log;
 	};
 }
 

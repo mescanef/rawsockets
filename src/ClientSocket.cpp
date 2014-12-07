@@ -3,7 +3,7 @@
 
 namespace rawsockets
 {
-	ClientSocket::ClientSocket()
+	ClientSocket::ClientSocket(Logger& _log) : log(_log)
 	{
 	}
 		
@@ -11,36 +11,29 @@ namespace rawsockets
 	{
 	}
 
-	bool ClientSocket::Socket(const int port, const string host)
+	bool ClientSocket::Socket(const int port, const string& host) 
 	{
 		cout << "Connecting to " << host << ":" << port << endl;
 		if (!SocketClass::Create()) {
-			Logger(ERRSOCKCREATE);
+			log.Log(ERRSOCKCREATE);
 			return false;
 		}
 		if (!SocketClass::Connect(host, port)) {
 			cout << ERRSOCKCONNECT << endl;
-			Logger(ERRSOCKCONNECT);
+			log.Log(ERRSOCKCONNECT);
 			return false;
 		}
 		cout << SUCCSOCKCONNMSG << endl;
-		Logger(SUCCSOCKCONNMSG);
+		log.Log(SUCCSOCKCONNMSG);
 		return true;
 	}
 
 	// send string to the server
-	void ClientSocket::SendMesg(const string s)
+	void ClientSocket::SendMesg(const string& s) const
 	{
 		if (!SocketClass::SendMesg(s)) {
 			cout << ERRSOCKSENDMSG << endl;
-			Logger(ERRSOCKSENDMSG);
+			log.Log(ERRSOCKSENDMSG);
 		}
-	}
-
-	// TODO: add timestamps, remove newlines....
-	void ClientSocket::Logger(const string text)
-	{
-		ofstream log_file(LOGFILENAME, ios_base::out | ios_base::app);
-		log_file << text << endl;
 	}
 }

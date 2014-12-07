@@ -4,9 +4,11 @@
 // global includes
 #include <string>
 #include <iostream>
+
 // local includes
 #include "SocketClass.hpp"
 #include "Defines.hpp"
+#include "Logger.hpp"
 
 using std::string;
 using std::ofstream;
@@ -20,12 +22,13 @@ namespace rawsockets
 	{
 	public:
 		// Todo - mv csocket's into def constr.
-		ClientSocket();
+		ClientSocket(Logger&);
 		~ClientSocket();
 		// port, hostname 
-		bool Socket(const int, const string);
-		void Logger(const string);
-		void SendMesg(const string);
+		bool Socket(const int, const string&);
+		void SendMesg(const string&) const;
+	private:
+		Logger& log;
 	};
 }
 

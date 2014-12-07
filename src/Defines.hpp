@@ -8,11 +8,11 @@
 #endif
 
 #ifndef DEFMODE
-#define DEFMODE 0
+#define DEFMODE "n"
 #endif
 
 #ifndef DEFMESG
-#define DEFMESG "Hello World!"
+#define DEFMESG "Hello, Doctor, Name, Continue, Yesterday, Tomorrow."
 #endif
 
 #ifndef ERRSOCKCREATE

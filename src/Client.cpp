@@ -3,19 +3,20 @@
 
 namespace rawsockets
 {
-	Client::Client()
+	Client::Client(Logger& _log) : log(_log)
 	{				
 	}
 	Client::~Client()
 	{
 	}
 
-	void Client::SendMesg(const int port, const string msg, const string hostname)
+	void Client::SendMesg(const int port, const string& msg, const string& hostname) const
 	{
-		ClientSocket Client;
+		ClientSocket Client(log);
 		if(Client.Socket(port, hostname)) {
 			Client.SendMesg(msg);
 		}
+		Client.~ClientSocket();
 	}
 	 
 }

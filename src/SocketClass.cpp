@@ -57,7 +57,7 @@ namespace rawsockets
 		return true;
 	}
 
-	void SocketClass::SetNonBlocking(const bool var)
+	void SocketClass::SetNonBlocking(const bool var) const
 	{
 		int opts;
 
@@ -75,7 +75,7 @@ namespace rawsockets
 		fcntl(m_sock, F_SETFL, opts);
 	}
 
-	bool SocketClass::Connect(const string host, const int port)
+	bool SocketClass::Connect(const string& host, const int port)
 	{
 		m_addr.sin_family = AF_INET;
 		m_addr.sin_port = htons(port);
@@ -94,7 +94,7 @@ namespace rawsockets
 	}
 
 	// TODO: send msg length to the server first
-	bool SocketClass::SendMesg(const string s)
+	bool SocketClass::SendMesg(const string& s) const
 	{
 		int status = send(m_sock, s.c_str(), s.size(), MSG_NOSIGNAL);
 		if (status == -1) {

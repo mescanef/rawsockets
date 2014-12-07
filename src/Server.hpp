@@ -5,6 +5,7 @@
 #include <iostream>
 // local includes
 #include "ServerSocket.hpp"
+#include "Logger.hpp"
  
 namespace rawsockets
 {
@@ -13,7 +14,7 @@ namespace rawsockets
 	public:
 		Server();
 		~Server();
-		void RunServer(const int);
+		void RunServer(const int,Logger&) const;
 	};
 }
 

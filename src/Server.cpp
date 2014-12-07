@@ -11,21 +11,22 @@ namespace rawsockets
 	{
 	}
 
-	void Server::RunServer(const int port)
+	void Server::RunServer(const int port, Logger& log) const
 	{
-		rawsockets::ServerSocket sock;
+		ServerSocket sock(log);
 		sock.Daemonize(port);
 		// loop it - do not stop daemon after data receive
 		while (true) {
-			rawsockets::ServerSocket new_sock;
+			ServerSocket new_sock(log);
 			if(sock.Accept(new_sock)) {
-				sock.Logger(SUCCSOCKACCEPT);
+				log.Log(SUCCSOCKACCEPT);
 				// receive message
 				new_sock.RecvMesg();				
 			}
 			new_sock.~ServerSocket();
 		}
-		sock.Logger(DAEMONSTOPPED);
+		log.Log(DAEMONSTOPPED);
+		sock.~ServerSocket();
 	}
 
 }

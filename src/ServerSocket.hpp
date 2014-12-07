@@ -3,11 +3,11 @@
 
 // global includes
 #include <string>
-#include <fstream>
 #include <iostream>
 // local includes
 #include "SocketClass.hpp"
 #include "Defines.hpp"
+#include "Logger.hpp"
 
 using std::string;
 using std::ofstream;
@@ -19,12 +19,13 @@ namespace rawsockets
 	class ServerSocket : private SocketClass
 	{
 	public:
-		ServerSocket();		
+		ServerSocket(Logger&);		
 		~ServerSocket();
 		void Daemonize(const int);
 		bool Accept(ServerSocket&) const;
-		void Logger(const string);
-		void RecvMesg();
+		void RecvMesg() const;
+	private:
+		Logger& log;
 	};
 }
 
