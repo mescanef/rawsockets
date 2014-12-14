@@ -34,7 +34,7 @@ int main(const int argc, const char **argv)
 	GetOpt_pp ops(argc, argv);
 
 	// call logger def constr.
-	Logger log ;
+	Logger log;
 
 	// get port value if specified in args..
 	ops >> Option('p',PORT);

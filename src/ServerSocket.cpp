@@ -1,9 +1,6 @@
 // local includes
 #include "ServerSocket.hpp"
 
-using std::cout;
-using std::endl;
-
 namespace rawsockets
 {
 	ServerSocket::ServerSocket(Logger& _log) : log(_log)
@@ -43,13 +40,16 @@ namespace rawsockets
 	void ServerSocket::RecvMesg() const
 	{
 		string msg;
-		if (!SocketClass::RecvMesg(msg)) {
+		unsigned int length;
+		if (!SocketClass::RecvMesg(msg, length)) {
 			log.Log(ERRSOCKRECVMSG);
 		}
 		else
 		{
 			log.Log("Server: Received from client: " + msg);
+			log.Log("Server: Message's length: " + to_string(length));
 			cout << "Server: Received from client: " << msg << endl;
+			cout << "Server: Message's length:  " << to_string(length) << endl;
 		}
 	}
 }

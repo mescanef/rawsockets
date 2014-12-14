@@ -93,28 +93,52 @@ namespace rawsockets
 		}
 	}
 
-	// TODO: send msg length to the server first
 	bool SocketClass::SendMesg(const string& s) const
 	{
-		int status = send(m_sock, s.c_str(), s.size(), MSG_NOSIGNAL);
+		unsigned int msgLength = htonl(s.size());
+
+		int status = send(m_sock, &msgLength, sizeof(msgLength), MSG_NOSIGNAL);
+		if (status == -1) {
+			return false;
+		}
+
+		status = send(m_sock, s.data(), s.size(), MSG_CONFIRM);
 		if (status == -1) {
 			return false;
 		}
 		return true;
 	}
-	
-	// TODO: receive msg length from the client first
-	bool SocketClass::RecvMesg(string& msg) const
+
+	bool SocketClass::RecvMesg(string& msg, unsigned int& len) const
 	{
 		char buf [MAXRECV];
-		memset(buf, 0, MAXRECV);
+		unsigned int bufLen = 0;
+		unsigned int tLen = sizeof(buf);
+		unsigned int tDataRecv = 0;
+		int dataRecv = 0;
 
-		while (1) {
-			int status = recv(m_sock, buf, sizeof(buf), MSG_NOSIGNAL);
-			if(status <= 0) {
+		// get msg len first.
+		dataRecv = recv(m_sock,&bufLen,sizeof(bufLen),MSG_NOSIGNAL);
+		// check length
+		if (ntohl(bufLen)<=0 || dataRecv<0) {
+			return false;
+		}
+		len = ntohl(bufLen);
+		
+		dataRecv = 0;
+		
+		// get msg:
+		while (tLen != len) {
+			// clear buffer per recv!
+			memset(buf, 0, MAXRECV);
+			dataRecv = recv(m_sock,&buf,tLen,MSG_NOSIGNAL);
+			if(dataRecv <= 0) {
 				break;
 			} else {
 				msg += buf;
+				if(len-tDataRecv<tLen) {
+					tLen = len-tDataRecv;
+				}
 			}
 		}
 		if (msg.size()>0) {
