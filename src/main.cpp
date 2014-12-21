@@ -1,5 +1,6 @@
 // global includes
 #include <stdio.h>
+#include <google/protobuf/message.h>
 
 // local includes
 #include "Server.hpp"
@@ -24,6 +25,7 @@ using GetOpt::Option;
 using rawsockets::Client;
 using rawsockets::Server;
 using rawsockets::Logger;
+using google::protobuf::ShutdownProtobufLibrary;
 using pvars::MODE;
 using pvars::PORT;
 using pvars::HOST;
@@ -31,6 +33,10 @@ using pvars::MESG;
 
 int main(const int argc, const char **argv)
 {
+	// Verify that the version of the library that we linked against is
+    // compatible with the version of the headers we compiled against.
+	GOOGLE_PROTOBUF_VERIFY_VERSION;
+			
 	GetOpt_pp ops(argc, argv);
 
 	// call logger def constr.
@@ -56,5 +62,7 @@ int main(const int argc, const char **argv)
 		c.~Client();
 	}
 	log.~Logger();
+	ShutdownProtobufLibrary();
+
 	return 0;
 }

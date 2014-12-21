@@ -40,16 +40,13 @@ namespace rawsockets
 	void ServerSocket::RecvMesg() const
 	{
 		string msg;
-		unsigned int length;
-		if (!SocketClass::RecvMesg(msg, length)) {
+		if (!SocketClass::RecvMesg(msg)) {
 			log.Log(ERRSOCKRECVMSG);
 		}
 		else
 		{
 			log.Log("Server: Received from client: " + msg);
-			log.Log("Server: Message's length: " + to_string(length));
 			cout << "Server: Received from client: " << msg << endl;
-			cout << "Server: Message's length:  " << to_string(length) << endl;
 		}
 	}
 }

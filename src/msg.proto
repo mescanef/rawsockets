@@ -1,0 +1,5 @@
+package rawsockets;
+
+message Mesg {
+	required string msg = 1;
+}

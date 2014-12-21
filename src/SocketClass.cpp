@@ -95,55 +95,58 @@ namespace rawsockets
 
 	bool SocketClass::SendMesg(const string& s) const
 	{
-		unsigned int msgLength = htonl(s.size());
-
-		int status = send(m_sock, &msgLength, sizeof(msgLength), MSG_NOSIGNAL);
-		if (status == -1) {
-			return false;
+		Mesg mesg;		
+		mesg.set_msg(s);
+		
+		uint32 msgLength = mesg.ByteSize();
+		unsigned int prefixLength = sizeof(msgLength);
+		int bufLength = prefixLength + msgLength;
+		uint8 buf[bufLength];
+		
+		ArrayOutputStream arrayOut(buf, bufLength);
+		CodedOutputStream codedOut(&arrayOut);
+		
+		codedOut.WriteLittleEndian32(msgLength);
+		
+		mesg.SerializeWithCachedSizes(&codedOut);
+				
+		int status = send(m_sock, buf, bufLength, MSG_NOSIGNAL);
+		if (status != bufLength) {
+			return false;		
 		}
 
-		status = send(m_sock, s.data(), s.size(), MSG_CONFIRM);
-		if (status == -1) {
-			return false;
-		}
 		return true;
 	}
 
-	bool SocketClass::RecvMesg(string& msg, unsigned int& len) const
+	bool SocketClass::RecvMesg(string& msg) const
 	{
-		char buf [MAXRECV];
-		unsigned int bufLen = 0;
-		unsigned int tLen = sizeof(buf);
-		unsigned int tDataRecv = 0;
-		int dataRecv = 0;
-
-		// get msg len first.
-		dataRecv = recv(m_sock,&bufLen,sizeof(bufLen),MSG_NOSIGNAL);
-		// check length
-		if (ntohl(bufLen)<=0 || dataRecv<0) {
+		Mesg mesg;
+		
+		uint32 msgLength;
+		unsigned int prefixLength = sizeof(msgLength);
+		uint8 prefix[prefixLength];
+		
+		// get msg len.
+		if (prefixLength != recv(m_sock, prefix, prefixLength,MSG_NOSIGNAL)) {
 			return false;
 		}
-		len = ntohl(bufLen);
+	
+		CodedInputStream::ReadLittleEndian32FromArray(prefix, &msgLength);
+		uint8 buf[msgLength];
 		
-		dataRecv = 0;
+		// get msg.
+		if (msgLength != recv(m_sock,buf,msgLength,MSG_NOSIGNAL)) 
+		{
+			return false;
+		}
 		
-		// get msg:
-		while (tLen != len) {
-			// clear buffer per recv!
-			memset(buf, 0, MAXRECV);
-			dataRecv = recv(m_sock,&buf,tLen,MSG_NOSIGNAL);
-			if(dataRecv <= 0) {
-				break;
-			} else {
-				msg += buf;
-				if(len-tDataRecv<tLen) {
-					tLen = len-tDataRecv;
-				}
-			}
+		ArrayInputStream arrayIn(buf, msgLength);
+		CodedInputStream codedIn(&arrayIn);
+		if (!mesg.ParseFromCodedStream(&codedIn)) {
+			return false;
 		}
-		if (msg.size()>0) {
-			return true;
-		}
-		return false;
+		msg = mesg.DebugString();
+		
+		return true;
 	}
 }
