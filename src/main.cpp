@@ -1,22 +1,12 @@
 // global includes
 #include <stdio.h>
 #include <google/protobuf/message.h>
-
 // local includes
 #include "Server.hpp"
 #include "Client.hpp"
 #include "Defines.hpp"
 #include "Logger.hpp"
 #include "getoptpp/getopt_pp_standalone.h"
-
-// "private" vars
-namespace pvars
-{
-	string MODE=DEFMODE;
-	int PORT=DEFPORT;
-	string HOST=DEFHOST;
-	string MESG=DEFMESG;
-}
 
 using std::cout;
 using std::endl;
@@ -26,13 +16,15 @@ using rawsockets::Client;
 using rawsockets::Server;
 using rawsockets::Logger;
 using google::protobuf::ShutdownProtobufLibrary;
-using pvars::MODE;
-using pvars::PORT;
-using pvars::HOST;
-using pvars::MESG;
 
 int main(const int argc, const char **argv)
 {
+	// local vars
+	unsigned int PORT=DEFPORT;
+	string MODE=DEFMODE;
+	string HOST=DEFHOST;
+	string MESG=DEFMESG;
+	
 	// Verify that the version of the library that we linked against is
     // compatible with the version of the headers we compiled against.
 	GOOGLE_PROTOBUF_VERIFY_VERSION;
@@ -43,7 +35,8 @@ int main(const int argc, const char **argv)
 	Logger log;
 
 	// get port value if specified in args..
-	ops >> Option('p',PORT);
+	// TODO: non default port number shall be validated.
+	ops >> Option('p',PORT);	
 
 	if (ops >> Option('s', MODE)) {
 		// run as server

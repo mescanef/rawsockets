@@ -11,12 +11,12 @@
 #include <fcntl.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
-// local includes
-#include "Defines.hpp"
-#include "msg.pb.hpp"
 #include <google/protobuf/io/coded_stream.h>
 #include <google/protobuf/io/zero_copy_stream_impl_lite.h>
 #include <google/protobuf/message.h>
+// local includes
+#include "Defines.hpp"
+#include "msg.pb.hpp"
 
 using std::string;
 using rawsockets::Mesg;

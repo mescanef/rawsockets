@@ -4,7 +4,6 @@
 // global includes
 #include <string>
 #include <iostream>
-
 // local includes
 #include "SocketClass.hpp"
 #include "Defines.hpp"
