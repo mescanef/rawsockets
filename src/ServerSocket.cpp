@@ -45,8 +45,8 @@ namespace rawsockets
 		}
 		else
 		{
-			log.Log("Server: Received from client: " + msg);
-			cout << "Server: Received from client: " << msg << endl;
+			log.Log(MSGRECEIVED + msg);
+			cout << MSGRECEIVED << msg << endl;
 		}
 	}
 }

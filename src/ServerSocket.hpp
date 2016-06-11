@@ -10,10 +10,7 @@
 #include "Logger.hpp"
 
 using std::string;
-using std::ofstream;
-using std::ios_base;
 using std::endl;
-using std::to_string;
 using std::cout;
 
 namespace rawsockets

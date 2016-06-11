@@ -23,7 +23,7 @@
 #define ERRSOCKCONNECT "Client: Sorry. Unable to connect!"
 #endif
 
-#ifndef RRSOCKSENDMSG
+#ifndef ERRSOCKSENDMSG
 #define ERRSOCKSENDMSG "Client: Sorry. Could not send message!"
 #endif
 
@@ -31,8 +31,8 @@
 #define SUCCSOCKCONNMSG "Client: Connected!"
 #endif
 
-#ifndef  ERRSOCKRECVMSG
-#define  ERRSOCKRECVMSG "Server: Sorry, could not receive message!"
+#ifndef ERRSOCKRECVMSG
+#define ERRSOCKRECVMSG "Server: Sorry, could not receive message!"
 #endif
 
 #ifndef SUCCSOCKACCEPT 
@@ -63,8 +63,8 @@
 #define MAXCONNS 5
 #endif
 
-#ifndef MAXRECV
-#define MAXRECV 255
+#ifndef MSGRECEIVED
+#define MSGRECEIVED "Received from client "
 #endif
 
 #ifndef LOGFILENAME

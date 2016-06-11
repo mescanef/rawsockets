@@ -35,7 +35,7 @@ void protobuf_AssignDesc_msg_2eproto() {
   GOOGLE_CHECK(file != NULL);
   Mesg_descriptor_ = file->message_type(0);
   static const int Mesg_offsets_[1] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Mesg, msg_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Mesg, message_),
   };
   Mesg_reflection_ =
     new ::google::protobuf::internal::GeneratedMessageReflection(
@@ -78,8 +78,8 @@ void protobuf_AddDesc_msg_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-    "\n\tmsg.proto\022\nrawsockets\"\023\n\004Mesg\022\013\n\003msg\030\001"
-    " \002(\t", 44);
+    "\n\tmsg.proto\022\nrawsockets\"\027\n\004Mesg\022\017\n\007messa"
+    "ge\030\001 \002(\t", 48);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "msg.proto", &protobuf_RegisterTypes);
   Mesg::default_instance_ = new Mesg();
@@ -97,12 +97,13 @@ struct StaticDescriptorInitializer_msg_2eproto {
 // ===================================================================
 
 #ifndef _MSC_VER
-const int Mesg::kMsgFieldNumber;
+const int Mesg::kMessageFieldNumber;
 #endif  // !_MSC_VER
 
 Mesg::Mesg()
   : ::google::protobuf::Message() {
   SharedCtor();
+  // @@protoc_insertion_point(constructor:rawsockets.Mesg)
 }
 
 void Mesg::InitAsDefaultInstance() {
@@ -112,21 +113,24 @@ Mesg::Mesg(const Mesg& from)
   : ::google::protobuf::Message() {
   SharedCtor();
   MergeFrom(from);
+  // @@protoc_insertion_point(copy_constructor:rawsockets.Mesg)
 }
 
 void Mesg::SharedCtor() {
+  ::google::protobuf::internal::GetEmptyString();
   _cached_size_ = 0;
-  msg_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+  message_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
 Mesg::~Mesg() {
+  // @@protoc_insertion_point(destructor:rawsockets.Mesg)
   SharedDtor();
 }
 
 void Mesg::SharedDtor() {
-  if (msg_ != &::google::protobuf::internal::kEmptyString) {
-    delete msg_;
+  if (message_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    delete message_;
   }
   if (this != default_instance_) {
   }
@@ -154,11 +158,9 @@ Mesg* Mesg::New() const {
 }
 
 void Mesg::Clear() {
-  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    if (has_msg()) {
-      if (msg_ != &::google::protobuf::internal::kEmptyString) {
-        msg_->clear();
-      }
+  if (has_message()) {
+    if (message_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+      message_->clear();
     }
   }
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
@@ -167,31 +169,36 @@ void Mesg::Clear() {
 
 bool Mesg::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) return false
+#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
-  while ((tag = input->ReadTag()) != 0) {
+  // @@protoc_insertion_point(parse_start:rawsockets.Mesg)
+  for (;;) {
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // required string msg = 1;
+      // required string message = 1;
       case 1: {
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+        if (tag == 10) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_msg()));
-          ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-            this->msg().data(), this->msg().length(),
-            ::google::protobuf::internal::WireFormat::PARSE);
+                input, this->mutable_message()));
+          ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+            this->message().data(), this->message().length(),
+            ::google::protobuf::internal::WireFormat::PARSE,
+            "message");
         } else {
-          goto handle_uninterpreted;
+          goto handle_unusual;
         }
-        if (input->ExpectAtEnd()) return true;
+        if (input->ExpectAtEnd()) goto success;
         break;
       }
 
       default: {
-      handle_uninterpreted:
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+      handle_unusual:
+        if (tag == 0 ||
+            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
-          return true;
+          goto success;
         }
         DO_(::google::protobuf::internal::WireFormat::SkipField(
               input, tag, mutable_unknown_fields()));
@@ -199,43 +206,54 @@ bool Mesg::MergePartialFromCodedStream(
       }
     }
   }
+success:
+  // @@protoc_insertion_point(parse_success:rawsockets.Mesg)
   return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:rawsockets.Mesg)
+  return false;
 #undef DO_
 }
 
 void Mesg::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // required string msg = 1;
-  if (has_msg()) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-      this->msg().data(), this->msg().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE);
-    ::google::protobuf::internal::WireFormatLite::WriteString(
-      1, this->msg(), output);
+  // @@protoc_insertion_point(serialize_start:rawsockets.Mesg)
+  // required string message = 1;
+  if (has_message()) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+      this->message().data(), this->message().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE,
+      "message");
+    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
+      1, this->message(), output);
   }
 
   if (!unknown_fields().empty()) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         unknown_fields(), output);
   }
+  // @@protoc_insertion_point(serialize_end:rawsockets.Mesg)
 }
 
 ::google::protobuf::uint8* Mesg::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // required string msg = 1;
-  if (has_msg()) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-      this->msg().data(), this->msg().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE);
+  // @@protoc_insertion_point(serialize_to_array_start:rawsockets.Mesg)
+  // required string message = 1;
+  if (has_message()) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+      this->message().data(), this->message().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE,
+      "message");
     target =
       ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        1, this->msg(), target);
+        1, this->message(), target);
   }
 
   if (!unknown_fields().empty()) {
     target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
         unknown_fields(), target);
   }
+  // @@protoc_insertion_point(serialize_to_array_end:rawsockets.Mesg)
   return target;
 }
 
@@ -243,11 +261,11 @@ int Mesg::ByteSize() const {
   int total_size = 0;
 
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    // required string msg = 1;
-    if (has_msg()) {
+    // required string message = 1;
+    if (has_message()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::StringSize(
-          this->msg());
+          this->message());
     }
 
   }
@@ -277,8 +295,8 @@ void Mesg::MergeFrom(const ::google::protobuf::Message& from) {
 void Mesg::MergeFrom(const Mesg& from) {
   GOOGLE_CHECK_NE(&from, this);
   if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    if (from.has_msg()) {
-      set_msg(from.msg());
+    if (from.has_message()) {
+      set_message(from.message());
     }
   }
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
@@ -304,7 +322,7 @@ bool Mesg::IsInitialized() const {
 
 void Mesg::Swap(Mesg* other) {
   if (other != this) {
-    std::swap(msg_, other->msg_);
+    std::swap(message_, other->message_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);

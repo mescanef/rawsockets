@@ -1,5 +1,5 @@
 package rawsockets;
 
 message Mesg {
-	required string msg = 1;
+	required string message = 1;
 }

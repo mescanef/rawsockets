@@ -3,7 +3,7 @@ rawsockets
 
 Simple 'echo' client-server app written in C++.
 
-This app, for data serialization, is using Google's Protobuf.
+This app, for data serialization, is using Google's Protobuf (v2.6.1).
 
 Usage
 ==========

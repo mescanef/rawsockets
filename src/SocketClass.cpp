@@ -96,7 +96,7 @@ namespace rawsockets
 	bool SocketClass::SendMesg(const string& s) const
 	{
 		Mesg mesg;		
-		mesg.set_msg(s);
+		mesg.set_message(s);
 		
 		uint32 msgLength = mesg.ByteSize();
 		unsigned int prefixLength = sizeof(msgLength);
